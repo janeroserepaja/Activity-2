@@ -37,6 +37,12 @@ function handleMenu(choice) {
     }
 }
 
+function showExpenseSummary() {
+    console.log("\n===== EXPENSE SUMMARY =====");
+    console.log(`Number of Expenses: ${expenses.length}`);
+    console.log(`Total Expenses: ₱${totalExpenses.toFixed(2)}`);
+}
+
 function addExpense() {
     rl.question("Enter expense name: ", function (name) {
         rl.question("Enter expense amount: ", function (amountInput) {
@@ -57,6 +63,7 @@ function addExpense() {
             totalExpenses += amount;
 
             console.log("Expense added successfully!");
+            showExpenseSummary();
             showMenu();
         });
     });
@@ -79,7 +86,7 @@ function viewExpenses() {
 }
 
 function viewTotal() {
-    console.log(`\nTotal Expenses: ₱${totalExpenses.toFixed(2)}`);
+    showExpenseSummary();
     showMenu();
 }
 
@@ -107,6 +114,7 @@ function deleteExpense() {
             totalExpenses -= removedExpense.amount;
 
             console.log(`${removedExpense.name} has been deleted.`);
+            showExpenseSummary();
         }
 
         showMenu();
